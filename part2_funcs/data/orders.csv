@@ -1,0 +1,15 @@
+order_id,customer_id,status,item,qty,unit_price,total,created_at
+A12,C-101,settled,Gravity Roast,2,6.50,18.40,2025-09-15
+B77,C-102,prepping,Nebula Latte,1,5.40,5.40,2025-09-18
+C9,C-103,settled,Space Cocoa,1,9.99,9.99,2025-09-19
+D15,C-104,settled,Gravity Roast,1,6.50,6.50,2025-09-20
+E23,C-105,settled,Nebula Latte,3,5.40,16.20,2025-09-21
+F31,C-106,prepping,Space Cocoa,2,9.99,19.98,2025-09-22
+G42,C-107,settled,Gravity Roast,4,6.50,26.00,2025-09-23
+H58,C-108,cancelled,Nebula Latte,1,5.40,5.40,2025-09-24
+I67,C-101,settled,Space Cocoa,1,9.99,9.99,2025-09-25
+J74,C-102,settled,Gravity Roast,1,6.50,6.50,2025-09-26
+K83,C-103,prepping,Nebula Latte,2,5.40,10.80,2025-09-27
+L91,C-104,settled,Space Cocoa,1,9.99,9.99,2025-09-28
+M05,C-105,settled,Gravity Roast,2,6.50,13.00,2025-09-29
+N12,C-106,settled,Nebula Latte,1,5.40,5.40,2025-09-30

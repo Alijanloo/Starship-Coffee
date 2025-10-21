@@ -1,0 +1,9 @@
+customer_id,name,email,tier,credits
+C-101,Luna Rios,luna.rios@station.local,GOLD,25
+C-102,Pax Trent,pax@dock.local,SILVER,8
+C-103,A. Crew,crew.alpha@station.local,GOLD,2
+C-104,Zara Kim,zara.kim@station.local,BRONZE,15
+C-105,Marcus Chen,marcus.chen@dock.local,GOLD,42
+C-106,Elena Vega,elena.vega@station.local,SILVER,12
+C-107,Dr. Smith,smith@research.local,PLATINUM,100
+C-108,Alex Torres,alex.torres@station.local,BRONZE,5
