@@ -3,10 +3,9 @@
 import re
 
 import streamlit as st
+from config import INJECTION_PATTERNS
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.graph import END, START, StateGraph
-
-from config import INJECTION_PATTERNS
 from llm import get_embedder, get_llm
 from loader import embed_chunks, load_chunks
 from models import RAGState
@@ -49,8 +48,10 @@ def node_generate(state: RAGState) -> RAGState:
         return {
             **state,
             "answer": (
-                "I can't help with requests to reveal file contents or access restricted data. "
-                "Try asking a specific question about our menu, policies, or operations."
+                "I can't help with requests to reveal file contents "
+                "or access restricted data. "
+                "Try asking a specific question about our menu, "
+                "policies, or operations."
             ),
             "citations": [],
         }
@@ -71,7 +72,9 @@ def node_generate(state: RAGState) -> RAGState:
     user_prompt = f"Context:\n{context}\n\nQuestion: {state['query']}"
 
     llm = get_llm()
-    response = llm.invoke([SystemMessage(content=system_prompt), HumanMessage(content=user_prompt)])
+    response = llm.invoke(
+        [SystemMessage(content=system_prompt), HumanMessage(content=user_prompt)]
+    )
 
     return {**state, "answer": response.content.strip(), "citations": citations}
 

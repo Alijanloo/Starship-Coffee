@@ -9,8 +9,8 @@ import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from graph import get_pipeline
-from models import RAGOutput, RAGState
+from graph import get_pipeline  # noqa: E402
+from models import RAGOutput, RAGState  # noqa: E402
 
 
 def main():
@@ -59,7 +59,9 @@ def main():
             with st.expander(f"Debug — top-{k} retrieved chunks"):
                 for r in result["retrieved"]:
                     st.markdown(f"**{r['doc_id']}** (score: `{r['score']:.3f}`)")
-                    st.caption(r["content"][:200] + ("…" if len(r["content"]) > 200 else ""))
+                    st.caption(
+                        r["content"][:200] + ("…" if len(r["content"]) > 200 else "")
+                    )
                     st.divider()
 
 

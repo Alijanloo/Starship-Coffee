@@ -185,4 +185,3 @@ streamlit run part3_receipts/app_receipts.py
 * **Task 1:** Documentation files in `/part1_rag/docs/`
 * **Task 2:** CSV data in `/part2_funcs/data/`
 * **Task 3:** Demo receipts in `/part3_receipts/receipts/`
-

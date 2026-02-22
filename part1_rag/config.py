@@ -7,7 +7,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-for _proxy_key in ("ALL_PROXY", "HTTPS_PROXY", "HTTP_PROXY", "all_proxy", "https_proxy", "http_proxy"):
+for _proxy_key in (
+    "ALL_PROXY",
+    "HTTPS_PROXY",
+    "HTTP_PROXY",
+    "all_proxy",
+    "https_proxy",
+    "http_proxy",
+):
     os.environ.pop(_proxy_key, None)
 
 DOCS_DIR = Path(__file__).parent / "docs"
@@ -19,7 +26,9 @@ COLLECTION_NAME = "starship_docs"
 
 EMBED_MODEL: str = os.getenv("OPENROUTER_EMBED_MODEL", "openai/text-embedding-3-small")
 OPENROUTER_API_KEY: str = os.getenv("OPENROUTER_API_KEY", "")
-OPENROUTER_BASE_URL: str = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
+OPENROUTER_BASE_URL: str = os.getenv(
+    "OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"
+)
 OPENROUTER_MODEL: str = os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini")
 
 OPENROUTER_HEADERS: dict[str, str] = {

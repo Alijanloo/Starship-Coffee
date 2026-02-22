@@ -3,9 +3,8 @@
 import json
 
 import streamlit as st
-from langchain_text_splitters import MarkdownTextSplitter
-
 from config import CACHE_DIR, DOCS_DIR, EMBED_MODEL
+from langchain_text_splitters import MarkdownTextSplitter
 from llm import get_embedder
 from models import ChunkDoc
 
@@ -35,7 +34,9 @@ def embed_chunks(chunks: list[ChunkDoc]) -> list[ChunkDoc]:
     cache_file = CACHE_DIR / f"embeddings_{safe_model}.json"
     embedder = get_embedder()
 
-    cached: dict[str, list[float]] = json.loads(cache_file.read_text()) if cache_file.exists() else {}
+    cached: dict[str, list[float]] = (
+        json.loads(cache_file.read_text()) if cache_file.exists() else {}
+    )
 
     missing = [c for c in chunks if c.chunk_id not in cached]
     if missing:

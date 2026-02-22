@@ -4,12 +4,11 @@ import sqlite3
 
 import numpy as np
 import streamlit as st
-from qdrant_client import QdrantClient
-from qdrant_client.models import Distance, PointStruct, VectorParams
-
 from config import CACHE_DIR, COLLECTION_NAME
 from loader import embed_chunks, load_chunks
 from models import ChunkDoc, RetrievedChunk
+from qdrant_client import QdrantClient
+from qdrant_client.models import Distance, PointStruct, VectorParams
 
 
 def cosine_similarity(a: list[float], b: list[float]) -> float:
@@ -19,7 +18,9 @@ def cosine_similarity(a: list[float], b: list[float]) -> float:
     return float(np.dot(va, vb) / denom) if denom > 0 else 0.0
 
 
-def search_json(query_vec: list[float], chunks: list[ChunkDoc], k: int) -> list[RetrievedChunk]:
+def search_json(
+    query_vec: list[float], chunks: list[ChunkDoc], k: int
+) -> list[RetrievedChunk]:
     """Cosine search over in-memory chunks (no external storage needed)."""
     scored = [
         RetrievedChunk(
@@ -33,7 +34,9 @@ def search_json(query_vec: list[float], chunks: list[ChunkDoc], k: int) -> list[
     return sorted(scored, key=lambda x: x.score, reverse=True)[:k]
 
 
-def search_sqlite(query_vec: list[float], chunks: list[ChunkDoc], k: int) -> list[RetrievedChunk]:
+def search_sqlite(
+    query_vec: list[float], chunks: list[ChunkDoc], k: int
+) -> list[RetrievedChunk]:
     """SQLite-backed vector search; embeddings stored as raw float32 BLOBs."""
     db_path = CACHE_DIR / "index.sqlite"
     con = sqlite3.connect(str(db_path))
@@ -61,7 +64,11 @@ def search_sqlite(query_vec: list[float], chunks: list[ChunkDoc], k: int) -> lis
     for chunk_id, doc_id, content, emb_blob in cur.fetchall():
         vec = np.frombuffer(emb_blob, dtype=np.float32).tolist()
         score = cosine_similarity(query_vec, vec)
-        results.append(RetrievedChunk(chunk_id=chunk_id, doc_id=doc_id, content=content, score=score))
+        results.append(
+            RetrievedChunk(
+                chunk_id=chunk_id, doc_id=doc_id, content=content, score=score
+            )
+        )
     con.close()
     return sorted(results, key=lambda x: x.score, reverse=True)[:k]
 

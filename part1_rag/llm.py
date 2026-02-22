@@ -1,8 +1,6 @@
 """LLM and embedding model factories."""
 
 import streamlit as st
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-
 from config import (
     EMBED_MODEL,
     OPENROUTER_API_KEY,
@@ -10,6 +8,7 @@ from config import (
     OPENROUTER_HEADERS,
     OPENROUTER_MODEL,
 )
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 
 def get_llm() -> ChatOpenAI:
